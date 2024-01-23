@@ -8,6 +8,12 @@ router.get('/', (req, res) => {
     res.render('home', { movies })
 })
 
+router.get('/search', (req, res) => {
+    const movies = movieService.getAll();
+
+    res.render('search', { movies })
+})
+
 router.get('/about', (req, res) => {
     res.render('about')
 })
