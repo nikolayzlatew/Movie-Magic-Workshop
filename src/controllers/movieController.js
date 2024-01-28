@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-const movieService = require('../services/movieService')
+const movieService = require('../services/movieService');
+const castService = require('../services/castService');
 
 router.get('/create', (req, res) => {
     res.render('create')
@@ -34,8 +35,10 @@ router.get('/movies/:movieId', async (req, res) => {
 
 router.get('/movies/:movieId/attach', async (req, res) => {
     const movie = await movieService.getOne(req.params.movieId).lean();
+    const cast = await castService.getAll().lean();
 
-    res.render('movie/attach' , { ...movie })
+    //TODO: remove already added cast
+    res.render('movie/attach' , { ...movie, cast })
 })
 
 module.exports = router;
