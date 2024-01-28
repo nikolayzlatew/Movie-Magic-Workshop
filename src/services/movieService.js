@@ -22,7 +22,7 @@ exports.search = async (title, genre, year) => {
     return result;
 }
 
-exports.getOne = (movieId) => Movie.findById(movieId);
+exports.getOne = (movieId) => Movie.findById(movieId).populate('casts');
 
 exports.create = (movieData) => Movie.create(movieData);
 
