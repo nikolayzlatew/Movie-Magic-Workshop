@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const handlebars = require('express-handlebars');
-const path = require('path')
+const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const routes = require('./routes');
 const { log } = require('console');
@@ -19,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false}))
+app.use(cookieParser());
 
 app.use(routes);
 
