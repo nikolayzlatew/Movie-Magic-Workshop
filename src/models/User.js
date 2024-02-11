@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         lowercase: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -23,7 +24,7 @@ userSchema.pre('save', async function() {
 userSchema.virtual('rePassword')
     .set(function(value) {
         if(value !== this.password) {
-            throw new mongoose.MongooseError('Password missmatch!')
+            throw new mongoose.Error('Password missmatch!')
         }
 
     });
