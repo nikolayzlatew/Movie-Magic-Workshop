@@ -50,6 +50,10 @@ router.post('/movies/:movieId/attach', async (req, res) => {
     res.redirect(`/movies/${movieId}/attach`);
 })
 
+router.get('/movies/:movieId/edit', (req, res) => {
+    res.render('movie/edit')
+})
+
 module.exports = router;
 
 
