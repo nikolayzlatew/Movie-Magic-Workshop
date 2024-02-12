@@ -9,9 +9,17 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
     const userData = req.body;
 
-    await authService.register(userData);
+    try {
 
-    res.redirect('/auth/login');
+        await authService.register(userData);
+
+        res.redirect('/auth/login');
+    } catch (err) {
+        res.render('auth/register', { error: err.message })
+    }
+
+
+
 })
 
 router.get('/login', (req, res) => {
